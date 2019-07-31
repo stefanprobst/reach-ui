@@ -523,7 +523,7 @@ export const ComboboxList = forwardRef(function ComboboxList(
 const OptionContext = createContext();
 
 export const ComboboxOption = forwardRef(function ComboboxOption(
-  { children, value, onClick, ...props },
+  { children, value, meta, onClick, ...props },
   ref
 ) {
   const {
@@ -540,7 +540,7 @@ export const ComboboxOption = forwardRef(function ComboboxOption(
   const isActive = navigationValue === value;
 
   const handleClick = () => {
-    onSelect && onSelect(value);
+    onSelect && onSelect(value, meta);
     transition(SELECT_WITH_CLICK, { value });
   };
 
