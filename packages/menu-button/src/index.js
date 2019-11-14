@@ -122,13 +122,15 @@ if (__DEV__) {
 
 ////////////////////////////////////////////////////////////////////////////////
 export const MenuButton = forwardRef(function MenuButton(
-  { onClick, onKeyDown, onMouseDown, id, ...props },
+  { anchorEl, onClick, onKeyDown, onMouseDown, id, ...props },
   forwardedRef
 ) {
   const { refs, state, setState } = useContext(MenuContext);
   const ownRef = useRef(null);
 
-  useRect(ownRef, state.isOpen, buttonRect => setState({ buttonRect }));
+  useRect(anchorEl || ownRef, state.isOpen, buttonRect =>
+    setState({ buttonRect })
+  );
 
   useEffect(
     () => setState({ buttonId: id != null ? id : genId() }),
